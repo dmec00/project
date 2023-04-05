@@ -1,12 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container">
+<div class="container-xl">
   <div class="page-header">
     <h1>Products</h1>
+    <h4><span>Here is our list of products</span></h4>
   </div>
 </div>
 
-<div class="container">
+<div class="d-grid gap-1">
+  <div class="p-2 bg-light border"></div>
+</div>
+
+<div class="container-xl">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -21,13 +26,13 @@
     <tbody>
       <% @products.each do |product| %>
         <tr>
-          <td><%= product.item %></td>
+          <td><h5><%= product.item %></h5></td>
           <td><%= product.description %></td>
           <td><%= product.size %></td>
-          <td><%= product.price %></td>
-          <td><%= link_to 'Show', product %></td>
-          <td><%= link_to 'Edit', edit_product_path(product) %></td>
-          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><h5><%= product.price %></h5></td>
+          <td><button type="button" class="btn btn-primary btn-sm"><%= link_to 'Show', product, class: "text-white" %></button> </td>
+          <td><button type="button" class="btn btn-secondary btn-sm"><%= link_to 'Edit', edit_product_path(product), class: "text-white" %></button></td>
+          <td><button type="button" class="btn btn-danger btn-sm"><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-white" %></button></td>
         </tr>
       <% end %>
     </tbody>
@@ -36,4 +41,4 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<button type="button" class="btn btn-primary btn-lg"><%= link_to 'New Product', new_product_path, class: "text-white" %></button>
