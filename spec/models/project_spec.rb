@@ -9,11 +9,15 @@ describe "Project Attribute Requirements on Create", :type => :model do
       expect(project.valid?).to eq(false)
     end
     it "should not be able to save product when title missing" do
-      project = Product.new(description: "Some description content goes here")
+      project = Product.new(description: "Some description content goes here", size: "L", price: 20)
       expect(project.save).to eq(false)
     end
-    it "should be able to save product when have description and title" do
-      project = Product.new(title: "Title", description: "Content of the description")
+    it "should not be able to save product when price is missing" do
+        project = Product.new(item: "Item", description: "Some description content goes here")
+        expect(project.save).to eq(false)
+      end
+    it "should be able to save product when have description, title, size, and price" do
+      project = Product.new(item: "item", description: "Content of the description", size: "L", price: 20)
       expect(project.save).to eq(true)
     end
   end
@@ -23,12 +27,12 @@ end
 describe "Product Attribute Requirements on Edit", :type => :model do
   context "Edit project" do  
     before (:each) do
-      @project = Product.create(title: "Title", description: "Content of the description")
+      @project = Product.create(item: "Item", description: "Content of the description")
  
       end
     it "ensures the title is present when editing project" do
-      @project.update(:title => "New Title")
-      expect(@project.title == "New Title")
+      @project.update(:item => "New item")
+      expect(@project.item == "New item")
     end
   end
 end
